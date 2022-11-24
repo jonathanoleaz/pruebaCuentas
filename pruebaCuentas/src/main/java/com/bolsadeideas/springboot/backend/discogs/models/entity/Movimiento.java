@@ -1,40 +1,32 @@
 package com.bolsadeideas.springboot.backend.discogs.models.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-//import com.bolsadeideas.springboot.app.models.entity.Factura;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "movimiento")
 public class Movimiento implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "pk_movimiento")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "fecha", columnDefinition="DATETIME")
@@ -43,15 +35,81 @@ public class Movimiento implements Serializable{
 	private Date fecha;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_tipo_movimiento")
     private TipoMovimiento tipoMovimiento;
 	
-	@NotEmpty
+
 	private Double valor;
 	
-	@NotEmpty
+
 	private Double saldo;
 	
 	@NotEmpty
-	private Double clave;
+	private String clave;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public TipoMovimiento getTipoMovimiento() {
+		return tipoMovimiento;
+	}
+
+	public void setTipoMovimiento(TipoMovimiento tipoMovimiento) {
+		this.tipoMovimiento = tipoMovimiento;
+	}
+
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+
+	public Double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
+	}
+
+	public String getClave() {
+		return clave;
+	}
+
+	public void setClave( String clave) {
+		this.clave = clave;
+	}
+
+	public Movimiento(Long id, @NotEmpty Date fecha, TipoMovimiento tipoMovimiento, @NotEmpty Double valor,
+			@NotEmpty Double saldo, String clave) {
+		super();
+		this.id = id;
+		this.fecha = fecha;
+		this.tipoMovimiento = tipoMovimiento;
+		this.valor = valor;
+		this.saldo = saldo;
+		this.clave = clave;
+	}
+
+	public Movimiento() {
+		super();
+	}
+	
+	
 
 }
