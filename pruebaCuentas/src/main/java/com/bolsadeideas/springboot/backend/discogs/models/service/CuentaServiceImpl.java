@@ -1,6 +1,8 @@
 package com.bolsadeideas.springboot.backend.discogs.models.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.ValidationException;
 
@@ -48,9 +50,9 @@ public class CuentaServiceImpl implements ICuentaService{
 
     @Override
     @Transactional(readOnly = true)
-    public Cuenta findOne(Long id) {
+    public Optional<Cuenta> findOne(Long id) {
         //return AlbumDTO.convertAlbumToDTO(albumDao.findOne(id));
-    	return cuentaDao.findById(id).get();
+    	return cuentaDao.findById(id);
     }
 
     @Override
@@ -84,6 +86,7 @@ public class CuentaServiceImpl implements ICuentaService{
     @Transactional
     public void delete(Long id) {
     	Cuenta c = cuentaDao.findById(id).get();
+    	//List<Cliente> = cuentaDao.findByClienteId(c.getCliente().getId());
         cuentaDao.delete(c);
     }
 

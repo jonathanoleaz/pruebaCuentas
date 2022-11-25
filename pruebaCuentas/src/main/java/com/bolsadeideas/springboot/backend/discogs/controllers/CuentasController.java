@@ -23,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,7 +59,7 @@ public class CuentasController {
 		
 		Cuenta cuenta = null;
 		try {
-			cuenta = cuentaService.findOne(id);
+			cuenta = cuentaService.findOne(id).orElse(null);
 		} catch (DataAccessException e) {
 			response.put("message", "Query error");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().toString()));
@@ -105,12 +106,35 @@ public class CuentasController {
 		try {
 			newCuenta = cuentaService.save(cuenta);
 		}catch (DataAccessException e) {
-			response.put("message", "Error inserting in the DB");
+			response.put("message", "Error registrando en la base de datos");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().toString()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		response.put("message", "The country was created successfully");
+		response.put("message", "Cuenta creada");
 		response.put("cuenta", cuenta);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
+	
+	@DeleteMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Map<String, Object> response = new HashMap<>();
+		
+		Cuenta cuenta = null;
+		try {
+			cuenta = cuentaService.findOne(id).orElse(null);
+		} catch (DataAccessException e) {
+			response.put("message", "Query error");
+			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().toString()));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		if(cuenta == null) {
+			response.put("message", "El cliente con ID: ".concat(id.toString().concat(" no se encuentra registrado.")));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+		}else {
+			cuentaService.delete(id);
+		}
+		response.put("message", "Cliente eliminado");
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NO_CONTENT);
+	}	
 }

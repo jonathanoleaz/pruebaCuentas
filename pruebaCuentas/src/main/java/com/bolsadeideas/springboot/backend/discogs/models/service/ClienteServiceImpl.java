@@ -7,6 +7,7 @@ import com.bolsadeideas.springboot.backend.discogs.models.entity.Genero;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.ValidationException;
 
@@ -40,9 +41,9 @@ public class ClienteServiceImpl implements IClienteService{
 
     @Override
     @Transactional(readOnly = true)
-    public Cliente findOne(Long id) {
+    public Optional<Cliente> findOne(Long id) {
         //return AlbumDTO.convertAlbumToDTO(albumDao.findOne(id));
-    	return clienteDao.findById(id).get();
+    	return clienteDao.findById(id);
     }
 
     @Override

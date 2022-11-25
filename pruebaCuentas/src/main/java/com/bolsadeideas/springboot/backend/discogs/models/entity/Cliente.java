@@ -1,15 +1,25 @@
 package com.bolsadeideas.springboot.backend.discogs.models.entity;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "cliente")
@@ -36,7 +46,12 @@ public class Cliente extends Persona implements Serializable {
 	
 	//@NotEmpty
 	@Column(nullable = false, columnDefinition = "TINYINT(1)")
-	private boolean estado;	
+	private boolean estado;
+	
+	@OneToMany(mappedBy="cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+    //@JoinColumn(name = "fk_cliente")
+    private List<Cuenta> cuentas;
 
 	public Long getId() {
 		return id;
@@ -68,6 +83,14 @@ public class Cliente extends Persona implements Serializable {
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}	
+
+	public List<Cuenta> getCuentas() {
+		return cuentas;
+	}
+
+	public void setCuentas(List<Cuenta> cuentas) {
+		this.cuentas = cuentas;
 	}
 
 	public Cliente(Long id, @NotEmpty @Size(min = 4, max = 45) String nombre, @NotEmpty Integer edad,
