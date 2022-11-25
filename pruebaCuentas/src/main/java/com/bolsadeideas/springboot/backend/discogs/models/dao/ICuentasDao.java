@@ -14,8 +14,8 @@ import com.bolsadeideas.springboot.backend.discogs.models.entity.Cuenta;
 
 @Repository
 public interface ICuentasDao extends PagingAndSortingRepository<Cuenta, Long> {
-	/*@Query("select cue from Cuenta cue where cue.fk_cliente=?1")
-    public List<Cuenta> findByClienteId(Long idCliente);*/
+	@Query("select cue from Cuenta cue where cue.numeroCuenta=?1")
+    public List<Cuenta> findByNumeroCuenta(String numeroCuenta);
    
 
 }

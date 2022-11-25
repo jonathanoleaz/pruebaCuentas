@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.backend.discogs.models.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -60,6 +62,11 @@ public class Cuenta implements Serializable{
     //@NotEmpty
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean estado;
+    
+    @OneToMany(mappedBy="cuenta", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+    //@JoinColumn(name = "fk_cliente")
+    private List<Movimiento> movimiento;
 
 	public Long getId() {
 		return id;
@@ -107,6 +114,16 @@ public class Cuenta implements Serializable{
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	
+
+	public List<Movimiento> getMovimiento() {
+		return movimiento;
+	}
+
+	public void setMovimiento(List<Movimiento> movimiento) {
+		this.movimiento = movimiento;
 	}
 
 	public Cuenta(Long id, @NotEmpty @Size(min = 4, max = 45) String numeroCuenta, TipoCuenta tipoCuenta,

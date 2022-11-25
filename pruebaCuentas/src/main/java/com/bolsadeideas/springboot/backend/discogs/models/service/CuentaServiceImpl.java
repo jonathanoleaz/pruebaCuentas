@@ -65,15 +65,19 @@ public class CuentaServiceImpl implements ICuentaService{
     	
     	//Obtencion del tipo de cuenta por su nombre
     	List<TipoCuenta> tiposCuenta = tipoCuentaDao.findByNombre(cuenta.getTipoCuenta().getNombre());
+    	if(tiposCuenta.size()==0) {
+    		throw new ValidationException("No se encontro tipo de cuenta.");
+    	}
     	tipoCuenta = tiposCuenta.get(0);
     	
     	//Obtencion del cliente y persona por su nombre
     	List<Cliente> clientes = clienteDao.findByNombre(cuenta.getCliente().getNombre());
+    	if(clientes.size()==0) {
+    		throw new ValidationException("No se encontro cliente.");
+    	}
     	cli = clientes.get(0);
     	
-    	if(tiposCuenta.size()==0) {
-    		throw new ValidationException("No se encontro genero.");
-    	}
+    	
     	
     	cuenta.setTipoCuenta(tipoCuenta);
     	cuenta.setCliente(cli);

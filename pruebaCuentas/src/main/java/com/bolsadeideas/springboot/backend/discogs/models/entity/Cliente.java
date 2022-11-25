@@ -92,6 +92,8 @@ public class Cliente extends Persona implements Serializable {
 	public void setCuentas(List<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
+	
+	
 
 	public Cliente(Long id, @NotEmpty @Size(min = 4, max = 45) String nombre, @NotEmpty Integer edad,
 			@NotEmpty String identificacion, @NotEmpty String direccion, @NotEmpty String telefono, Long id2,
