@@ -33,7 +33,8 @@ public class Persona implements Serializable{
 	private Long id;
 
 	@NotEmpty
-	@Size(min=4, max=45) 
+	@Size(min=1, max=45)
+	@Column(unique = true)
 	private String nombre;
 
 	//@NotEmpty

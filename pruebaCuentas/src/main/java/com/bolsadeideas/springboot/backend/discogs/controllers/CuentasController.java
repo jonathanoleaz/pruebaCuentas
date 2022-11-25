@@ -9,7 +9,10 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import com.bolsadeideas.springboot.backend.discogs.models.entity.Cliente;
+import com.bolsadeideas.springboot.backend.discogs.models.entity.Cuenta;
 import com.bolsadeideas.springboot.backend.discogs.models.service.IClienteService;
+import com.bolsadeideas.springboot.backend.discogs.models.service.ICuentaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
@@ -30,20 +33,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin /**enabled only for development environment String nameSpanish, String nameEnglish*/
 @RestController
-@RequestMapping("/clientes")
-public class ClienteController {
+@RequestMapping("/cuentas")
+public class CuentasController {
     @Autowired
-	private IClienteService clienteService;
+	private ICuentaService cuentaService;
 
     @GetMapping("/")
-	public Page<Cliente> index(
+	public Page<Cuenta> index(
 			@RequestParam(name = "page", defaultValue = "0") int page, 
 			@RequestParam(name = "pageSize", defaultValue = "10") int pageSize
 		)
 	{
 		PageRequest pageRequest = PageRequest.of(page, pageSize);
 
-		Page<Cliente> countriesDto = clienteService.findAll(pageRequest);
+		Page<Cuenta> countriesDto = cuentaService.findAll(pageRequest);
 		
 		return countriesDto;
 	}
@@ -53,30 +56,30 @@ public class ClienteController {
 	public ResponseEntity<?> show(@PathVariable Long id) {
 		Map<String, Object> response = new HashMap<>();
 		
-		Cliente cliente = null;
+		Cuenta cuenta = null;
 		try {
-			cliente = clienteService.findOne(id);
+			cuenta = cuentaService.findOne(id);
 		} catch (DataAccessException e) {
 			response.put("message", "Query error");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().toString()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		if(cliente == null) {
-			response.put("message", "El cliente con ID: ".concat(id.toString().concat(" no se encuentra registrado.")));
+		if(cuenta == null) {
+			response.put("message", "La cuenta con ID: ".concat(id.toString().concat(" no se encuentra registrado.")));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+		return new ResponseEntity<Cuenta>(cuenta, HttpStatus.OK);
 	}
 
 
 	@PostMapping("/")
-	public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result) {
+	public ResponseEntity<?> create(@Valid @RequestBody Cuenta cuenta, BindingResult result) {
 		
-		Cliente newCliente =null;
+		Cuenta newCuenta =null;
 		Map<String, Object> response = new HashMap<>();
 		
-		System.out.println(cliente.toString());
+		System.out.println(cuenta.toString());
 		
 		/*Validacion de campos especificada en javaxValidation*/
 		if(result.hasErrors()) {
@@ -100,14 +103,14 @@ public class ClienteController {
 		}
 		
 		try {
-			newCliente = clienteService.save(cliente);
+			newCuenta = cuentaService.save(cuenta);
 		}catch (DataAccessException e) {
 			response.put("message", "Error inserting in the DB");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().toString()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		response.put("message", "The country was created successfully");
-		response.put("cliente", cliente);
+		response.put("cuenta", cuenta);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 }

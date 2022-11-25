@@ -28,7 +28,7 @@ public class Cliente extends Persona implements Serializable {
 
 	@NotEmpty
 	@Column(name = "cliente_id")
-	@Size(min=4, max=45) 
+	@Size(min=1, max=45) 
 	private String clienteId;
 
 	@NotEmpty
@@ -36,9 +36,7 @@ public class Cliente extends Persona implements Serializable {
 	
 	//@NotEmpty
 	@Column(nullable = false, columnDefinition = "TINYINT(1)")
-	private boolean estado;
-
-	
+	private boolean estado;	
 
 	public Long getId() {
 		return id;

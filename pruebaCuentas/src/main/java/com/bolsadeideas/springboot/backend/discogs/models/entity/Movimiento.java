@@ -15,6 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "movimiento")
 public class Movimiento implements Serializable{
@@ -36,6 +38,7 @@ public class Movimiento implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_tipo_movimiento")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoMovimiento tipoMovimiento;
 	
 

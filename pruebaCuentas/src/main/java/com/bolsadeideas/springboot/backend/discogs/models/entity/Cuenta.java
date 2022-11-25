@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "cuenta")
 public class Cuenta implements Serializable{
@@ -29,13 +31,19 @@ public class Cuenta implements Serializable{
 
 	@NotEmpty
 	@Column(name = "numero_cuenta")
-	@Size(min=4, max=45) 
+	@Size(min=1, max=45) 
 	private String numeroCuenta;
 	
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_tipo_cuenta")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoCuenta tipoCuenta;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_cliente")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Cliente cliente;
 
     //@NotEmpty
 	@Column(name = "saldo_inicial")
@@ -83,6 +91,14 @@ public class Cuenta implements Serializable{
 
 	public void setEstado(@NotEmpty boolean estado) {
 		this.estado = estado;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Cuenta(Long id, @NotEmpty @Size(min = 4, max = 45) String numeroCuenta, TipoCuenta tipoCuenta,
