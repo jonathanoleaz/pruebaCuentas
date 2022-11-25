@@ -94,8 +94,8 @@ public class ClienteController {
 					{
 						return "The field: "+err.getField() +" "+ err.getDefaultMessage();
 					}
-					).collect(Collectors.toList());
-			response.put("err", errors);*/
+					).collect(Collectors.toList());*/
+			response.put("err", errors);
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 		}
 		

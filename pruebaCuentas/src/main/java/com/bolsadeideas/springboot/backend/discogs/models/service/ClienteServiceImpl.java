@@ -1,7 +1,15 @@
 package com.bolsadeideas.springboot.backend.discogs.models.service;
 
 import com.bolsadeideas.springboot.backend.discogs.models.dao.IClienteDao;
+import com.bolsadeideas.springboot.backend.discogs.models.dao.IGeneroDao;
 import com.bolsadeideas.springboot.backend.discogs.models.entity.Cliente;
+import com.bolsadeideas.springboot.backend.discogs.models.entity.Genero;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.ValidationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -13,6 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class ClienteServiceImpl implements IClienteService{
     @Autowired
     IClienteDao clienteDao;
+    
+    @Autowired
+    IGeneroDao generoDao;
 
     @Override
     @Transactional(readOnly = true)
@@ -37,9 +48,17 @@ public class ClienteServiceImpl implements IClienteService{
     @Override
     @Transactional
     public Cliente save(Cliente cliente) {
-        Cliente c = clienteDao.save(cliente);
+    	Genero genero = new Genero();
+    	Cliente cl = new Cliente();
+    	List<Genero> generos= generoDao.findByNombre(cliente.getGenero().getNombre());
+    	if(generos.size()==0) {
+    		throw new ValidationException("No se encontro genero.");
+    	}
+    	genero = generos.get(0);
+    	cliente.setGenero(genero);
+        cl = clienteDao.save(cliente);
 
-        return c;
+        return cl;
     }
 
     @Override
