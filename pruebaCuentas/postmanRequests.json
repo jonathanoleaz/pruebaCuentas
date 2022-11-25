@@ -1,0 +1,359 @@
+{
+	"info": {
+		"_postman_id": "d14cdfca-307f-4d40-a286-96c23dacfa46",
+		"name": "PruebasCuenta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getClientes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Bearer",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/clientes/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"clientes",
+						"7"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postClientes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKb25hdGhhblBaIiwiaWF0IjoxNjYzMzYyNTM2LCJleHAiOjE2NjM0NDg5MzZ9.iMqkvcVa4NrbXPunX9YSbJ0-pA9tXFoGTDVT0U7ZV3SLgJb18NG0k7IR8cv-7_70zaHZAA0R465BZg9j_4fyaA",
+						"type": "text"
+					},
+					{
+						"key": "Bearer",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"AXCVB\",\r\n    \"edad\": 12,\r\n    \"identificacion\": \"S\",\r\n    \"direccion\": \"V\",\r\n    \"telefono\": \"F22DF\",\r\n    \"genero\": {        \r\n        \"nombre\": \"MASC\"\r\n    },\r\n    \"clienteId\": \"d000\",\r\n    \"contrasenia\": \"33223\",\r\n    \"estado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/clientes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"clientes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCuentas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/cuentas/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cuentas",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postCuentas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numeroCuenta\": \"23258532\",\r\n    \"tipoCuenta\": {\r\n        \"nombre\": \"AHORRO\"\r\n    },\r\n    \"saldoInicial\": 10000.0,\r\n    \"estado\": true,\r\n    \"cliente\": {\r\n        \"nombre\": \"AXCVB\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/cuentas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cuentas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteClientes",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/clientes/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"clientes",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMovimientos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/movimientos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movimientos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postMovimientos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"tipoMovimiento\": {\r\n                \"nombre\": \"DEBITO\"\r\n            },\r\n            \"valor\": 1.0,\r\n            \"saldo\": 1.0,\r\n            \"cuenta\": {\r\n                \"numeroCuenta\":\"122222\"\r\n            }\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/movimientos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movimientos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delCuentas",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/cuentas/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cuentas",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putClientes",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"nombre\": \"AXCVB\",\r\n    \"edad\": 12,\r\n    \"identificacion\": \"S\",\r\n    \"direccion\": \"V\",\r\n    \"telefono\": \"F22DF\",\r\n    \"genero\": {        \r\n        \"nombre\": \"MASC\"\r\n    },\r\n    \"clienteId\": \"d000\",\r\n    \"contrasenia\": \"33223\",\r\n    \"estado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/clientes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"clientes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putCuentas",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"numeroCuenta\": \"23258532\",\r\n    \"tipoCuenta\": {\r\n        \"nombre\": \"AHORRO\"\r\n    },\r\n    \"saldoInicial\": 10000.0,\r\n    \"estado\": true,\r\n    \"cliente\": {\r\n        \"nombre\": \"AXCVB\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/cuentas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cuentas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putMovimientos",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"id\": 2,\r\n            \"tipoMovimiento\": {\r\n                \"nombre\": \"DEBITO\"\r\n            },\r\n            \"valor\": 1.0,\r\n            \"saldo\": 1.0,\r\n            \"cuenta\": {\r\n                \"numeroCuenta\":\"122222\"\r\n            }\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/movimientos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movimientos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEstadoDeCuenta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/clientes/estadoCuenta?clienteid=5&fechainicio=01-01-2000&fechafin=01-01-2023",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"clientes",
+						"estadoCuenta"
+					],
+					"query": [
+						{
+							"key": "clienteid",
+							"value": "5"
+						},
+						{
+							"key": "fechainicio",
+							"value": "01-01-2000"
+						},
+						{
+							"key": "fechafin",
+							"value": "01-01-2023"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

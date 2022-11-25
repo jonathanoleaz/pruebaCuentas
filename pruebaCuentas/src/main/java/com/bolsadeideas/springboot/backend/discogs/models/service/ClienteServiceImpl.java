@@ -6,6 +6,7 @@ import com.bolsadeideas.springboot.backend.discogs.models.entity.Cliente;
 import com.bolsadeideas.springboot.backend.discogs.models.entity.Genero;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,5 +68,15 @@ public class ClienteServiceImpl implements IClienteService{
     public void delete(Long id) {
     	Cliente c = clienteDao.findById(id).get();
         clienteDao.delete(c);
-    }    
+    }
+    
+    @Override
+    @Transactional
+    public List<Cliente> findByIdAndDates(Long clienteId, Date fechaInicio, Date fechaFin) {
+    	Genero genero = new Genero();
+    	Cliente cl = new Cliente();
+    	List<Cliente> clientes= clienteDao.findByIdAndDates(clienteId, fechaInicio, fechaFin);
+
+        return clientes;
+    }
 }

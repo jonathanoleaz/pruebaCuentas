@@ -48,7 +48,7 @@ public class Cliente extends Persona implements Serializable {
 	@Column(nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean estado;
 	
-	@OneToMany(mappedBy="cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy="cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonManagedReference
     //@JoinColumn(name = "fk_cliente")
     private List<Cuenta> cuentas;
