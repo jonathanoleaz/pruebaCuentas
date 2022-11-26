@@ -160,11 +160,11 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-INSERT INTO `` (`pk_genero`,`nombre`) VALUES (1,'MASC');
-INSERT INTO `` (`pk_genero`,`nombre`) VALUES (2,'FEM');
+INSERT INTO `genero` (`pk_genero`,`nombre`) VALUES (1,'MASC');
+INSERT INTO `genero` (`pk_genero`,`nombre`) VALUES (2,'FEM');
 
-INSERT INTO `` (`pk_tipo_cuenta`,`nombre`) VALUES (1,'AHORRO');
-INSERT INTO `` (`pk_tipo_cuenta`,`nombre`) VALUES (2,'CORRIENTE');
+INSERT INTO `tipo_cuenta` (`pk_tipo_cuenta`,`nombre`) VALUES (1,'AHORRO');
+INSERT INTO `tipo_cuenta` (`pk_tipo_cuenta`,`nombre`) VALUES (2,'CORRIENTE');
 
-INSERT INTO `` (`pk_tipo_movimiento`,`nombre`) VALUES (1,'DEBITO');
-INSERT INTO `` (`pk_tipo_movimiento`,`nombre`) VALUES (2,'CREDITO');
+INSERT INTO `tipo_movimiento` (`pk_tipo_movimiento`,`nombre`) VALUES (1,'DEBITO');
+INSERT INTO `tipo_movimiento` (`pk_tipo_movimiento`,`nombre`) VALUES (2,'CREDITO');
