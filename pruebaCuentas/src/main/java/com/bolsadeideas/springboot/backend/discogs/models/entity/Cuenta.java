@@ -139,4 +139,13 @@ public class Cuenta implements Serializable{
 	public Cuenta() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "Cuenta [id=" + id + ", numeroCuenta=" + numeroCuenta + ", tipoCuenta=" + tipoCuenta + 
+				", saldoInicial=" + saldoInicial + ", estado=" + estado 
+				+ "]";
+	}
+	
+	
 }

@@ -128,6 +128,20 @@ public class Movimiento implements Serializable{
 	public Movimiento() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "Movimiento [id=" + id + ", fecha=" + fecha + ", tipoMovimiento=" + tipoMovimiento + ", valor=" + valor
+				+ ", saldo=" + saldo + ", cuenta=" + cuenta + ", clave=" + clave + "]";
+	}
+
+	/*@Override
+	public String toString() {
+		return "Movimiento [id=" + id + ", fecha=" + fecha + ", tipoMovimiento=" + tipoMovimiento + ", valor=" + valor
+				+ ", saldo=" + saldo +", clave=" + clave + "]";
+	}*/
+	
+	
 	
 	
 

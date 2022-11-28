@@ -4,13 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
-import com.bolsadeideas.springboot.backend.discogs.models.entity.Cliente;
 import com.bolsadeideas.springboot.backend.discogs.models.entity.Cuenta;
-import com.bolsadeideas.springboot.backend.discogs.models.service.IClienteService;
 import com.bolsadeideas.springboot.backend.discogs.models.service.ICuentaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CuentasController {
     @Autowired
 	private ICuentaService cuentaService;
-
+    
     @GetMapping("/")
 	public Page<Cuenta> index(
 			@RequestParam(name = "page", defaultValue = "0") int page, 
@@ -166,5 +162,7 @@ public class CuentasController {
 		}
 		response.put("message", "Cliente eliminado");
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NO_CONTENT);
-	}	
+	}
+	
+	
 }

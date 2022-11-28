@@ -1,12 +1,8 @@
 package com.bolsadeideas.springboot.backend.discogs.controllers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import javax.validation.Valid;
 
@@ -91,7 +87,6 @@ public class ClienteController {
 		if(result.hasErrors()) {
 			List<String> errors = new ArrayList<>();
 			for(FieldError err: result.getFieldErrors()) {
-				System.out.println(err.getField());
 				errors.add("El campo: "+err.getField() +" "+ err.getDefaultMessage());
 			}
 			response.put("err", errors);
@@ -127,7 +122,6 @@ public class ClienteController {
 		if(result.hasErrors()) {
 			List<String> errors = new ArrayList<>();
 			for(FieldError err: result.getFieldErrors()) {
-				System.out.println(err.getField());
 				errors.add("El campo: "+err.getField() +" "+ err.getDefaultMessage());
 			}
 			response.put("err", errors);
@@ -169,49 +163,5 @@ public class ClienteController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NO_CONTENT);
 	}
 	
-	@GetMapping(value="/estadoCuenta", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> getEstadoDeCuenta(@RequestParam Map<String, String> params) {
-		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-		
-		Map<String, Object> response = new HashMap<>();
-		
-		String idCliente=params.get("clienteid");
-		String fechaInicio=params.get("fechainicio");
-		String fechaFin=params.get("fechafin");
-		
-		
-		if(idCliente==null || fechaInicio==null || fechaFin==null) {
-			response.put("message", "Parametros incorrectos");
-			response.put("error", "Parametros incorrectos");
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		List<Cliente> cliente = null;
-		
-		Date fechaI=null;
-		Date fechaF=null;
-		try {
-			fechaI = formatter.parse(fechaInicio);
-			fechaF = formatter.parse(fechaFin);
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		 
-		Long idCli = Long.parseLong(idCliente);
-		
-		try {
-			cliente = clienteService.findByIdAndDates(idCli, fechaI, fechaF);
-		} catch (DataAccessException e) {
-			response.put("message", "Query error");
-			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().toString()));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		
-		/*if(cliente == null) {
-			response.put("message", "El cliente con ID: ".concat(id.toString().concat(" no se encuentra registrado.")));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
-		}*/
-		return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
-	}
+	
 }

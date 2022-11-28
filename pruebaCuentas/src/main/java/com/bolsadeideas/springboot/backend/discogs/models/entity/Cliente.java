@@ -118,7 +118,7 @@ public class Cliente extends Persona implements Serializable {
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", clienteId=" + clienteId + ", contrasenia=" + contrasenia + ", estado=" + estado
-				+ "]";
+				+ ", cuentas=" + cuentas + "]";
 	}
 	
 	

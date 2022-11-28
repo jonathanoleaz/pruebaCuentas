@@ -70,13 +70,5 @@ public class ClienteServiceImpl implements IClienteService{
         clienteDao.delete(c);
     }
     
-    @Override
-    @Transactional
-    public List<Cliente> findByIdAndDates(Long clienteId, Date fechaInicio, Date fechaFin) {
-    	Genero genero = new Genero();
-    	Cliente cl = new Cliente();
-    	List<Cliente> clientes= clienteDao.findByIdAndDates(clienteId, fechaInicio, fechaFin);
-
-        return clientes;
-    }
+    
 }

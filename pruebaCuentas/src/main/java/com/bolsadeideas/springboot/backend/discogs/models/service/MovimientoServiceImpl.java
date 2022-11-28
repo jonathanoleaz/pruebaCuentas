@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.backend.discogs.models.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -131,6 +132,16 @@ public class MovimientoServiceImpl implements IMovimientoService{
     	Cuenta c = cuentaDao.findById(id).get();
     	//List<Cliente> = cuentaDao.findByClienteId(c.getCliente().getId());
         cuentaDao.delete(c);
+    }
+    
+    
+    @Override
+    @Transactional
+    public List<Movimiento> findByIdAndDates(Long clienteId, Date fechaInicio, Date fechaFin) {
+
+    	List<Movimiento> movimientos= movimientoDao.findByIdAndDates(clienteId, fechaInicio, fechaFin);
+
+        return movimientos;
     }
 
 }

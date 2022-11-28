@@ -1,6 +1,5 @@
 package com.bolsadeideas.springboot.backend.discogs.models.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,11 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bolsadeideas.springboot.backend.discogs.models.dao.IClienteDao;
 import com.bolsadeideas.springboot.backend.discogs.models.dao.ICuentasDao;
-import com.bolsadeideas.springboot.backend.discogs.models.dao.IGeneroDao;
 import com.bolsadeideas.springboot.backend.discogs.models.dao.ITipoCuentaDao;
 import com.bolsadeideas.springboot.backend.discogs.models.entity.Cliente;
 import com.bolsadeideas.springboot.backend.discogs.models.entity.Cuenta;
-import com.bolsadeideas.springboot.backend.discogs.models.entity.Genero;
 import com.bolsadeideas.springboot.backend.discogs.models.entity.Persona;
 import com.bolsadeideas.springboot.backend.discogs.models.entity.TipoCuenta;
 
@@ -93,5 +90,7 @@ public class CuentaServiceImpl implements ICuentaService{
     	//List<Cliente> = cuentaDao.findByClienteId(c.getCliente().getId());
         cuentaDao.delete(c);
     }
+    
+    
 
 }
