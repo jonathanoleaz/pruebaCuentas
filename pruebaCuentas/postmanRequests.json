@@ -327,14 +327,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/clientes/estadoCuenta?clienteid=5&fechainicio=01-01-2000&fechafin=01-01-2023",
+					"raw": "http://localhost:8081/movimientos/estadoCuenta?clienteid=5&fechainicio=01-01-2000&fechafin=01-01-2023",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
-						"clientes",
+						"movimientos",
 						"estadoCuenta"
 					],
 					"query": [
