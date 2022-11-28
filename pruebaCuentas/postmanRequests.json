@@ -29,7 +29,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/clientes/7",
+					"raw": "http://localhost:8081/clientes/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -37,7 +37,7 @@
 					"port": "8081",
 					"path": [
 						"clientes",
-						"7"
+						""
 					],
 					"query": [
 						{
@@ -123,7 +123,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"numeroCuenta\": \"23258532\",\r\n    \"tipoCuenta\": {\r\n        \"nombre\": \"AHORRO\"\r\n    },\r\n    \"saldoInicial\": 10000.0,\r\n    \"estado\": true,\r\n    \"cliente\": {\r\n        \"nombre\": \"AXCVB\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"numeroCuenta\": \"232585321\",\r\n    \"tipoCuenta\": {\r\n        \"nombre\": \"AHORRO\"\r\n    },\r\n    \"saldoInicial\": 10000.0,\r\n    \"estado\": true,\r\n    \"cliente\": {\r\n        \"nombre\": \"12227\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -192,7 +192,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n            \"tipoMovimiento\": {\r\n                \"nombre\": \"DEBITO\"\r\n            },\r\n            \"valor\": 1.0,\r\n            \"saldo\": 1.0,\r\n            \"cuenta\": {\r\n                \"numeroCuenta\":\"122222\"\r\n            }\r\n        }",
+					"raw": "{\r\n            \"tipoMovimiento\": {\r\n                \"nombre\": \"DEBITO\"\r\n            },\r\n            \"valor\": 1.0,\r\n            \"saldo\": 1.0,\r\n            \"cuenta\": {\r\n                \"numeroCuenta\":\"232585321\"\r\n            }\r\n        }",
 					"options": {
 						"raw": {
 							"language": "json"
