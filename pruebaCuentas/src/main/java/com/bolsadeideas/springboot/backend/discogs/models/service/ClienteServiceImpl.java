@@ -5,8 +5,6 @@ import com.bolsadeideas.springboot.backend.discogs.models.dao.IGeneroDao;
 import com.bolsadeideas.springboot.backend.discogs.models.entity.Cliente;
 import com.bolsadeideas.springboot.backend.discogs.models.entity.Genero;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

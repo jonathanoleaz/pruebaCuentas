@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.bolsadeideas.springboot.backend.discogs.models.entity.Genero;
 import com.bolsadeideas.springboot.backend.discogs.models.entity.TipoMovimiento;
 
 @Repository
